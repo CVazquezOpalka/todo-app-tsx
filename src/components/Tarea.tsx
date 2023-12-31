@@ -1,20 +1,18 @@
 type Props = {
-  botones: number;
+  botones: boolean;
   task: string;
-  deleteTask: () => void;
+  deleteTask?: () => void;
+  addDone?: () => void;
 };
 
-const Tarea = ({ task, deleteTask, botones }: Props) => {
+const Tarea = ({ task, deleteTask, addDone, botones }: Props) => {
   return (
     <li className="list-item">
       <span>{task}</span>
       <div className="button-container">
-        {botones === 2 ? (
+        {botones === true ? (
           <>
-            <button className="btn-danger" onClick={deleteTask}>
-              Borrar
-            </button>
-            <button className="btn-secondary">Hecho</button>
+            <button className="btn-secondary" onClick={addDone}>Hecho</button>
           </>
         ) : (
           <>
