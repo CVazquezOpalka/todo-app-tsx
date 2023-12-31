@@ -13,7 +13,12 @@ const ContainerDone = ({ taskDone, deleteTask }: Props) => {
       )}
       <ul className="container-done">
         {taskDone.map((e: string, index: number) => (
-          <Tarea key={index} task={e} deleteTask={() => deleteTask(index)} botones={false} />
+          <Tarea
+            key={index}
+            task={e}
+            deleteTask={() => deleteTask(index)}
+            botones={false}
+          />
         ))}
       </ul>
     </div>

@@ -1,28 +1,28 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   font-family: sans-serif;
   background-color: #333;
   color: #fff;
 }
 
-.container{
+.container {
   width: 1200px;
   height: auto;
   margin: 0 auto;
 }
 
-.container .title{
+.container .title {
   text-align: center;
   margin: 30px 0;
   text-decoration: underline;
 }
 
-.flex{
+.flex {
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -30,14 +30,14 @@ body{
   justify-content: space-evenly;
 }
 
-.flex .container-list{
+.flex .container-list {
   width: 45%;
   min-height: 45vh;
   height: auto;
   flex-direction: column;
 }
 
-.input-flex{
+.input-flex {
   width: 100%;
   display: flex;
   align-items: center;
@@ -45,36 +45,47 @@ body{
   gap: 10px;
   margin-bottom: 30px;
 }
-input[type="text"]{
+input[type="text"] {
   width: 350px;
   height: 40px;
   padding: 10px;
   border-radius: 5px;
-  border: transparent;
+  border: none;
   font-size: 16px;
   outline: 0;
 }
-.btn-primary, .btn-secondary, .btn-danger{
+input[type="text"]:focus {
+  border: 1px solid #1878f3;
+}
+.danger{
+  border: 1px solid red;
+  animation: shakeit 500ms ease-in;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-danger {
   display: inline-block;
   height: 40px;
   width: 80px;
   color: #fff;
   border: none;
-  border-radius: 5px ;
+  border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
 }
-.btn-primary{
+.btn-primary {
   background-color: #1878f3;
 }
-.btn-danger{
-background-color: red;
+.btn-danger {
+  background-color: red;
 }
-.btn-secondary{
+.btn-secondary {
   background-color: lightgreen;
 }
 
-.container-pending,.container-done{
+.container-pending,
+.container-done {
   margin-top: 15px;
   width: 100%;
   height: auto;
@@ -83,7 +94,8 @@ background-color: red;
   list-style: none;
 }
 
-.container-pending .list-item, .container-done .list-item{
+.container-pending .list-item,
+.container-done .list-item {
   width: 100%;
   height: 50px;
   background-color: #fff;
@@ -95,16 +107,28 @@ background-color: red;
   display: flex;
 }
 
-.list-item span{
+.list-item span {
   flex-grow: 2;
 }
-.list-item .button-container{
+.list-item .button-container {
   flex-grow: 1;
 }
-.button-container{
+.button-container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 5px;
   padding-right: 10px;
+}
+
+@keyframes shakeit {
+  0% {
+    transform: translateX(-20px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
