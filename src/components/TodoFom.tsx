@@ -1,22 +1,21 @@
-type Props = {
-  task: string;
-  setTask: React.Dispatch<React.SetStateAction<string>>;
-  add: () => void;
-  error: boolean;
-};
+import { useTodo } from "../Context/TodoContext";
 
-const TodoFom = (props: Props) => {
-  const { task, setTask, add, error } = props;
+
+
+const TodoFom = () => {
+  const {error, setNuevaTarea, agregarTarea, nuevaTarea, setError } = useTodo()
+  
   return (
     <div className="container input-flex">
       <input
-        className={error ? "danger" : ""}
+        className={error ? "inputs danger" : "inputs"}
         type="text"
-        placeholder="Ingresa tu tarea..."
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
+        placeholder={error ? "Debes Ingresar una tarea" : "Ingresa una tarea"}
+        value={nuevaTarea}
+        onChange={(e) => setNuevaTarea(e.target.value)}
+        onFocus={()=> setError(false)}
       />
-      <button className="btn-primary" onClick={add}>
+      <button className="btn-primary" onClick={agregarTarea}>
         Crear
       </button>
     </div>

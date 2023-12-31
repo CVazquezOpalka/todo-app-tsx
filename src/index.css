@@ -21,6 +21,14 @@ body {
   margin: 30px 0;
   text-decoration: underline;
 }
+@media (max-width: 64em) {
+  .container {
+    width: 80%;
+  }
+  .container .title {
+    text-align: center;
+  }
+}
 
 .flex {
   width: 90%;
@@ -44,22 +52,38 @@ body {
   justify-content: center;
   gap: 10px;
   margin-bottom: 30px;
+  transition: all 300ms;
 }
-input[type="text"] {
+
+.inputs {
   width: 350px;
   height: 40px;
   padding: 10px;
   border-radius: 5px;
-  border: none;
+  border: 2px solid #fff;
   font-size: 16px;
-  outline: 0;
+  outline: 1;
+  outline-color: #1878f3;
 }
-input[type="text"]:focus {
-  border: 1px solid #1878f3;
+@media (max-width: 64em) {
+  .input-flex {
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: start;
+  }
+  .inputs{
+    width: 90%;
+    margin: 0 auto;
+  }
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+ margin-left: 21px;
 }
-.danger{
+}
+.danger {
   border: 1px solid red;
-  animation: shakeit 500ms ease-in;
+  animation: shakeit 0.13s ease-in;
 }
 
 .btn-primary,
@@ -73,6 +97,7 @@ input[type="text"]:focus {
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
+  cursor: pointer;
 }
 .btn-primary {
   background-color: #1878f3;
@@ -119,6 +144,16 @@ input[type="text"]:focus {
   justify-content: flex-end;
   gap: 5px;
   padding-right: 10px;
+}
+@media(max-width: 64em){
+  .flex{
+    flex-direction: column;
+  }
+.flex .container-list{
+  margin-top: 20px;
+  width: 100%;
+  
+}
 }
 
 @keyframes shakeit {

@@ -29,35 +29,51 @@ export const useTodo = (): TodoContextType => {
 export const ContextProvider: React.FC<ContextProviderProps> = ({
   children,
 }) => {
+  const todoPendiente: string[] = JSON.parse(
+    localStorage.getItem("todoPendiente") || "[]"
+  );
+  const todoFinalizada: string[] = JSON.parse(
+    localStorage.getItem("todoFinalizada") || "[]"
+  );
   /* Manejador de Estados */
   const [error, setError] = useState<boolean>(false);
   const [nuevaTarea, setNuevaTarea] = useState<string>("");
-  const [tareaPendiente, setTareaPendientes] = useState<string[]>([]);
-  const [tareasFinalizadas, setTareasFinalizadas] = useState<string[]>([]);
+  const [tareaPendiente, setTareaPendientes] =
+    useState<string[]>(todoPendiente);
+  const [tareasFinalizadas, setTareasFinalizadas] =
+    useState<string[]>(todoFinalizada);
   /* Funciones */
   const borrarTarea = (index: number) => {
     let borrarTarea = tareasFinalizadas.filter((_, i) => i !== index);
+    localStorage.setItem("todoFinalizada", JSON.stringify(borrarTarea));
     setTareasFinalizadas(borrarTarea);
   };
   const agregarTarea = () => {
     if (nuevaTarea.trim() === "") {
       setError(true);
-      alert("debes agregar una tarea");
-      setError(false);
       return;
     }
-
-    setTareaPendientes((tareasPrevias) => [...tareasPrevias, nuevaTarea]);
+    setTareaPendientes((tareasPrevias) => {
+      const nuevasTareas = [...tareasPrevias, nuevaTarea];
+      localStorage.setItem("todoPendiente", JSON.stringify(nuevasTareas));
+      return nuevasTareas;
+    });
     setNuevaTarea("");
   };
   const tareaCompleta = (index: number) => {
     const encontrarTarea = tareaPendiente
       .filter((_, i) => i === index)
       .join("");
-    setTareasFinalizadas((tareasPrevias) => [...tareasPrevias, encontrarTarea]);
-    setTareaPendientes((tareasPrevias) =>
-      tareasPrevias.filter((_, i) => i !== index)
-    );
+    setTareasFinalizadas((tareasPrevias) => {
+      let nuevaTarea = [...tareasPrevias, encontrarTarea];
+      localStorage.setItem("todoFinalizada", JSON.stringify(nuevaTarea));
+      return nuevaTarea;
+    });
+    setTareaPendientes((tareasPrevias) => {
+      let borrarTarea = tareasPrevias.filter((_, i) => i !== index);
+      localStorage.setItem("todoPendiente", JSON.stringify(borrarTarea));
+      return borrarTarea;
+    });
   };
 
   return (

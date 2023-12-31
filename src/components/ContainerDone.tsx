@@ -1,22 +1,19 @@
+import { useTodo } from "../Context/TodoContext";
 import Tarea from "./Tarea";
 
-type Props = {
-  taskDone: string[];
-  deleteTask: (index: number) => void;
-};
-
-const ContainerDone = ({ taskDone, deleteTask }: Props) => {
+const ContainerDone = () => {
+  const { borrarTarea, tareasFinalizadas } = useTodo();
   return (
     <div className="container-list">
-      {taskDone.length > 0 && (
+      {tareasFinalizadas.length > 0 && (
         <h1 style={{ textAlign: "end" }}>ToDo realizadas</h1>
       )}
       <ul className="container-done">
-        {taskDone.map((e: string, index: number) => (
+        {tareasFinalizadas.map((e: string, index: number) => (
           <Tarea
             key={index}
             task={e}
-            deleteTask={() => deleteTask(index)}
+            deleteTask={() => borrarTarea(index)}
             botones={false}
           />
         ))}

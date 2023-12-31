@@ -1,19 +1,17 @@
+import { useTodo } from "../Context/TodoContext";
 import Tarea from "./Tarea";
-type Props = {
-  taskPending: string[];
-  completedTask: (index: number) => void;
-};
 
-const ConatinerPending = ({ taskPending, completedTask }: Props) => {
+const ConatinerPending = () => {
+  const { tareaPendiente, tareaCompleta } = useTodo();
   return (
     <div className="container-list">
-      {taskPending.length > 0 && <h1 className="title">ToDo Pendientes</h1>}
+      {tareaPendiente.length > 0 && <h1 className="title">ToDo Pendientes</h1>}
       <ul className="container-pending">
-        {taskPending.map((e: string, index: number) => (
+        {tareaPendiente.map((e: string, index: number) => (
           <Tarea
             key={index}
             task={e}
-            addDone={() => completedTask(index)}
+            addDone={() => tareaCompleta(index)}
             botones={true}
           />
         ))}
