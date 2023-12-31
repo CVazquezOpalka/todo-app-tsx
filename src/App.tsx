@@ -2,19 +2,17 @@ import { useState } from "react";
 import TodoFom from "./components/TodoFom";
 import ConatinerPending from "./components/ConatinerPending";
 import ContainerDone from "./components/ContainerDone";
-
+/* Para finalizar este experimento, vamos a agregar LocalStorage, y contex api */
 function App() {
   /* Manejador de Estados */
   const [nuevaTarea, setNuevaTarea] = useState<string>("");
   const [tareaPendiente, setTareaPendientes] = useState<string[]>([]);
   const [tareasFinalizadas, setTareasFinalizadas] = useState<string[]>([]);
   /* Funciones */
-
   const borrarTarea = (index: number) => {
     let borrarTarea = tareasFinalizadas.filter((_, i) => i !== index);
     setTareasFinalizadas(borrarTarea);
   };
-
   const agregarTarea = () => {
     if (nuevaTarea.trim() === "") {
       alert("Hubo un error vuelve a intentarlo");
